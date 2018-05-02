@@ -38,22 +38,22 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from qtum_electrum import keystore
-from qtum_electrum.qtum import COIN, is_address, TYPE_ADDRESS, TYPE_SCRIPT, TESTNET, is_hash160, eth_abi_encode
-from qtum_electrum.plugins import run_hook
-from qtum_electrum.i18n import _
-from qtum_electrum.util import (bh2u, bfh, format_time, format_satoshis, PrintError, format_satoshis_plain,
+from recrypt_electrum import keystore
+from recrypt_electrum.recrypt import COIN, is_address, TYPE_ADDRESS, TYPE_SCRIPT, TESTNET, is_hash160, eth_abi_encode
+from recrypt_electrum.plugins import run_hook
+from recrypt_electrum.i18n import _
+from recrypt_electrum.util import (bh2u, bfh, format_time, format_satoshis, PrintError, format_satoshis_plain,
                                 NotEnoughFunds, UserCancelled, profiler, export_meta, import_meta, open_browser,
                                 InvalidPassword)
-from qtum_electrum import Transaction
-from qtum_electrum import util, bitcoin, commands, coinchooser
-from qtum_electrum import paymentrequest
-from qtum_electrum.transaction import opcodes, contract_script
-from qtum_electrum.wallet import Multisig_Wallet, AddTransactionException
-from qtum_electrum.tokens import Token
+from recrypt_electrum import Transaction
+from recrypt_electrum import util, bitcoin, commands, coinchooser
+from recrypt_electrum import paymentrequest
+from recrypt_electrum.transaction import opcodes, contract_script
+from recrypt_electrum.wallet import Multisig_Wallet, AddTransactionException
+from recrypt_electrum.tokens import Token
 
 try:
-    from qtum_electrum.plot import plot_history
+    from recrypt_electrum.plot import plot_history
 except:
     plot_history = None
 
@@ -384,7 +384,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.setGeometry(100, 100, 860, 460)
 
     def watching_only_changed(self):
-        title = 'Electrum for Qtum <Beta> %s  -  %s' % (self.wallet.electrum_version,
+        title = 'Electrum for Recrypt <Beta> %s  -  %s' % (self.wallet.electrum_version,
                                                         self.wallet.basename())
         extra = [self.wallet.storage.get('wallet_type', '?')]
         if self.wallet.is_watching_only():
@@ -405,8 +405,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.wallet.is_watching_only():
             msg = ' '.join([
                 _("This wallet is watching-only."),
-                _("This means you will not be able to spend qtums with it."),
-                _("Make sure you own the seed phrase or the private keys, before you request Qtums to be sent to this wallet.")
+                _("This means you will not be able to spend recrypts with it."),
+                _("Make sure you own the seed phrase or the private keys, before you request Recrypts to be sent to this wallet.")
             ])
             self.show_warning(msg, title=_('Information'))
 
@@ -563,7 +563,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
         help_menu.addAction(_("&Official website"),
-                            lambda: open_browser("https://github.com/qtumproject/qtum-electrum/"))
+                            lambda: open_browser("https://github.com/recryptproject/recrypt-electrum/"))
         help_menu.addSeparator()
         help_menu.addAction(_("&Documentation"), lambda: open_browser("http://docs.electrum.org/")).setShortcut(
             QKeySequence.HelpContents)
@@ -577,25 +577,25 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         d = self.network.get_donation_address()
         if d:
             host = self.network.get_parameters()[0]
-            self.pay_to_URI('qtum:%s?message=donation for %s'%(d, host))
+            self.pay_to_URI('recrypt:%s?message=donation for %s'%(d, host))
         else:
             self.show_error(_('No donation address for this server'))
 
     def show_about(self):
-        QMessageBox.about(self, "Qtum Electrum",
+        QMessageBox.about(self, "Recrypt Electrum",
                           _("Version") +" %s" % (self.wallet.electrum_version) + "\n\n" +
                           _(
-                              "This software is based on Electrum to support Qtum. Qtum Electrum's focus is speed, with low resource usage and simplifying Qtum. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Bitcoin system." + "\n\n" +
+                              "This software is based on Electrum to support Recrypt. Recrypt Electrum's focus is speed, with low resource usage and simplifying Recrypt. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Bitcoin system." + "\n\n" +
                               _("Uses icons from the Icons8 icon pack (icons8.com).")))
 
     def show_report_bug(self):
         msg = ' '.join([
             _("Please report any bugs as issues on github:<br/>"),
-            "<a href=\"https://github.com/qtumproject/qtum-electrum/issues\">https://github.com/qtumproject/qtum-electrum/issues</a><br></br>",
+            "<a href=\"https://github.com/recryptproject/recrypt-electrum/issues\">https://github.com/recryptproject/recrypt-electrum/issues</a><br></br>",
             _("Before reporting a bug, upgrade to the most recent version of Electrum (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
-        self.show_message(msg, title="Qtum Electrum - " + _("Reporting Bugs"))
+        self.show_message(msg, title="Recrypt Electrum - " + _("Reporting Bugs"))
 
     def notify_transactions(self):
         if not self.network or not self.network.is_connected():
@@ -623,7 +623,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
     def notify(self, message):
         if self.tray:
-            self.tray.showMessage("Qtum Electrum", message, QSystemTrayIcon.Information, 20000)
+            self.tray.showMessage("Recrypt Electrum", message, QSystemTrayIcon.Information, 20000)
 
     # custom wrappers for getOpenFileName and getSaveFileName, that remember the path selected by the user
     def getOpenFileName(self, title, filter = ""):
@@ -674,9 +674,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.decimal_point == 2:
             return 'bits'
         if self.decimal_point == 5:
-            return 'mQTUM'
+            return 'mRECRYPT'
         if self.decimal_point == 8:
-            return 'QTUM'
+            return 'RECRYPT'
         raise Exception('Unknown base unit')
 
     def connect_fields(self, window, btc_e, fiat_e, fee_e):
@@ -802,7 +802,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.receive_address_e.addCopyButton(self.app)
         self.receive_address_e.setReadOnly(True)
         msg = _(
-            'Qtum address where the payment should be received. Note that each payment request uses a different Bitcoin address.')
+            'Recrypt address where the payment should be received. Note that each payment request uses a different Bitcoin address.')
         self.receive_address_label = HelpLabel(_('Receiving address'), msg)
         self.receive_address_e.textChanged.connect(self.update_receive_qr)
         self.receive_address_e.setFocusPolicy(Qt.ClickFocus)
@@ -832,8 +832,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         msg = ' '.join([
             _('Expiration date of your request.'),
             _('This information is seen by the recipient if you send them a signed payment request.'),
-            _('Expired requests have to be deleted manually from your list, in order to free the corresponding Qtum addresses.'),
-            _('The Qtum address never expires and will always be part of this wallet.'),
+            _('Expired requests have to be deleted manually from your list, in order to free the corresponding Recrypt addresses.'),
+            _('The Recrypt address never expires and will always be part of this wallet.'),
         ])
         grid.addWidget(HelpLabel(_('Request expires'), msg), 3, 0)
         grid.addWidget(self.expires_combo, 3, 1)
@@ -1055,7 +1055,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.payto_e = PayToEdit(self)
         msg = _('Recipient of the funds.') + '\n\n' \
               + _(
-            'You may enter a QTUM address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Qtum address)')
+            'You may enter a RECRYPT address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Recrypt address)')
         payto_label = HelpLabel(_('Pay to'), msg)
         grid.addWidget(payto_label, 1, 0)
         grid.addWidget(self.payto_e, 1, 1, 1, -1)
@@ -1103,7 +1103,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         grid.addLayout(hbox, 4, 4)
 
         msg = _(
-            'Qtum transactions are in general not free. A transaction fee is paid by the sender of the funds.') + '\n\n' \
+            'Recrypt transactions are in general not free. A transaction fee is paid by the sender of the funds.') + '\n\n' \
               + _('The amount of fee can be decided freely by the sender. However, transactions with low fees take more time to be processed.') + '\n\n' \
               + _('A suggested fee is automatically added to this field. You may override it. The suggested fee increases with the size of the transaction.')
         self.fee_e_label = HelpLabel(_('Fee'), msg)
@@ -1362,10 +1362,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         for _type, addr, amount in outputs:
             if addr is None:
-                self.show_error(_('Qtum Address is None'))
+                self.show_error(_('Recrypt Address is None'))
                 return
             if _type == TYPE_ADDRESS and not bitcoin.is_address(addr):
-                self.show_error(_('Invalid Qtum Address'))
+                self.show_error(_('Invalid Recrypt Address'))
                 return
             if amount is None:
                 self.show_error(_('Invalid Amount'))
@@ -1577,7 +1577,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         try:
             out = util.parse_URI(URI, self.on_pr)
         except BaseException as e:
-            self.show_error(_('Invalid qtum URI:') + '\n' + str(e))
+            self.show_error(_('Invalid recrypt URI:') + '\n' + str(e))
             return
         self.show_send_tab()
         r = out.get('r')
@@ -1836,7 +1836,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.send_button.setVisible(not self.wallet.is_watching_only())
 
     def change_password_dialog(self):
-        from qtum_electrum.storage import STO_EV_XPUB_PW
+        from recrypt_electrum.storage import STO_EV_XPUB_PW
         if self.wallet.get_available_storage_encryption_version() == STO_EV_XPUB_PW:
             from .password_dialog import ChangePasswordDialogForHW
             d = ChangePasswordDialogForHW(self, self.wallet)
@@ -2010,7 +2010,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         address  = address.text().strip()
         message = message.toPlainText().strip()
         if not bitcoin.is_address(address):
-            self.show_message('Invalid Qtum address.')
+            self.show_message('Invalid Recrypt address.')
             return
         txin_type = self.wallet.get_txin_type(address)
         if txin_type not in ['p2pkh', 'p2wpkh', 'p2wpkh-p2sh']:
@@ -2032,7 +2032,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         address  = address.text().strip()
         message = message.toPlainText().strip().encode('utf-8')
         if not bitcoin.is_address(address):
-            self.show_message('Invalid Qtum address.')
+            self.show_message('Invalid Recrypt address.')
             return
         try:
             # This can throw on invalid base64
@@ -2147,7 +2147,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         return d.run()
 
     def tx_from_text(self, txt):
-        from qtum_electrum.transaction import tx_from_str
+        from recrypt_electrum.transaction import tx_from_str
         try:
             tx = tx_from_str(txt)
             return Transaction(tx)
@@ -2156,7 +2156,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             return
 
     def read_tx_from_qrcode(self):
-        from qtum_electrum import qrscanner
+        from recrypt_electrum import qrscanner
         try:
             data = qrscanner.scan_barcode(self.config.get_video_device())
         except BaseException as e:
@@ -2165,7 +2165,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if not data:
             return
         # if the user scanned a bitcoin URI
-        if str(data).startswith("qtum:"):
+        if str(data).startswith("recrypt:"):
             self.pay_to_URI(data)
             return
         # else if the user scanned an offline signed tx
@@ -2206,7 +2206,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.show_transaction(tx)
 
     def do_process_from_txid(self):
-        from qtum_electrum import transaction
+        from recrypt_electrum import transaction
         txid, ok = QInputDialog.getText(self, _('Lookup transaction'), _('Transaction ID') + ':')
         if ok and txid:
             txid = str(txid).strip()
@@ -2241,7 +2241,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         e.setReadOnly(True)
         vbox.addWidget(e)
 
-        defaultname = 'qtum-electrum-private-keys.csv'
+        defaultname = 'recrypt-electrum-private-keys.csv'
         select_msg = _('Select file to export your private keys to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2301,7 +2301,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.do_export_privkeys(filename, private_keys, csv_button.isChecked())
         except (IOError, os.error) as reason:
             txt = "\n".join([
-                _("Qtum Electrum was unable to produce a private key-export."),
+                _("Recrypt Electrum was unable to produce a private key-export."),
                 str(reason)
             ])
             self.show_critical(txt, title=_("Unable to create csv"))
@@ -2349,7 +2349,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         d = WindowModalDialog(self, _('Export History'))
         d.setMinimumSize(400, 200)
         vbox = QVBoxLayout(d)
-        defaultname = os.path.expanduser('~/qtum-electrum-history.csv')
+        defaultname = os.path.expanduser('~/recrypt-electrum-history.csv')
         select_msg = _('Select file to export your wallet transactions to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2459,7 +2459,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         address_e.textChanged.connect(on_address)
         if not d.exec_():
             return
-        from qtum_electrum.wallet import sweep_preparations
+        from recrypt_electrum.wallet import sweep_preparations
         try:
             self.do_clear()
             coins, keypairs = sweep_preparations(get_pk(), self.network)
@@ -2531,7 +2531,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         lang_help = _('Select which language is used in the GUI (after restart).')
         lang_label = HelpLabel(_('Language') + ':', lang_help)
         lang_combo = QComboBox()
-        from qtum_electrum.i18n import languages
+        from recrypt_electrum.i18n import languages
         lang_combo.addItems(list(languages.values()))
         lang_keys = list(languages.keys())
         lang_cur_setting = self.config.get("language", '')
@@ -2647,9 +2647,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         SSL_id_e.setReadOnly(True)
         id_widgets.append((SSL_id_label, SSL_id_e))
 
-        units = ['QTUM', 'mQTUM', 'bits']
+        units = ['RECRYPT', 'mRECRYPT', 'bits']
         msg = _('Base unit of your wallet.')\
-              + '\n1QTUM=1000mQTUM.\n' \
+              + '\n1RECRYPT=1000mRECRYPT.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
         unit_label = HelpLabel(_('Base unit') + ':', msg)
         unit_combo = QComboBox()
@@ -2662,9 +2662,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 return
             edits = self.amount_e, self.fee_e, self.receive_amount_e
             amounts = [edit.get_amount() for edit in edits]
-            if unit_result == 'QTUM':
+            if unit_result == 'RECRYPT':
                 self.decimal_point = 8
-            elif unit_result == 'mQTUM':
+            elif unit_result == 'mRECRYPT':
                 self.decimal_point = 5
             elif unit_result == 'bits':
                 self.decimal_point = 2
@@ -2694,7 +2694,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         block_ex_combo.currentIndexChanged.connect(on_be)
         gui_widgets.append((block_ex_label, block_ex_combo))
 
-        from qtum_electrum import qrscanner
+        from recrypt_electrum import qrscanner
         system_cameras = qrscanner._find_system_cameras()
         qr_combo = QComboBox()
         qr_combo.addItem("Default","default")

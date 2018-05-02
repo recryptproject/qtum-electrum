@@ -339,7 +339,7 @@ class CoinChooserPrivacy(CoinChooserRandom):
         return penalty
 
 
-class CoinChooserQtum(CoinChooserBase):
+class CoinChooserRecrypt(CoinChooserBase):
     def keys(self, coins):
         return [coin['address'] for coin in coins]
 

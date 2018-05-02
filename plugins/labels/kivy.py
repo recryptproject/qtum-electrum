@@ -1,5 +1,5 @@
 from .labels import LabelsPlugin
-from qtum_electrum.plugins import hook
+from recrypt_electrum.plugins import hook
 
 class Plugin(LabelsPlugin):
 

@@ -3,12 +3,12 @@ from kivy.factory import Factory
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-from qtum_electrum.util import base_units
-from qtum_electrum.i18n import languages
-from qtum_electrum_gui.kivy.i18n import _
-from qtum_electrum.plugins import run_hook
-from qtum_electrum import coinchooser
-from qtum_electrum.util import fee_levels
+from recrypt_electrum.util import base_units
+from recrypt_electrum.i18n import languages
+from recrypt_electrum_gui.kivy.i18n import _
+from recrypt_electrum.plugins import run_hook
+from recrypt_electrum import coinchooser
+from recrypt_electrum.util import fee_levels
 
 from .choice_dialog import ChoiceDialog
 
@@ -18,7 +18,7 @@ Builder.load_string('''
 
 <SettingsDialog@Popup>
     id: settings
-    title: _('Qtum Electrum Settings')
+    title: _('Recrypt Electrum Settings')
     disable_pin: False
     use_encryption: False
     BoxLayout:
@@ -46,13 +46,13 @@ Builder.load_string('''
                 SettingsItem:
                     bu: app.base_unit
                     title: _('Denomination') + ': ' + self.bu
-                    description: _("Base unit for QTUM amounts.")
+                    description: _("Base unit for RECRYPT amounts.")
                     action: partial(root.unit_dialog, self)
                 CardSeparator
                 SettingsItem:
                     status: root.fee_status()
                     title: _('Fees') + ': ' + self.status
-                    description: _("Fees paid to the Qtum miners.")
+                    description: _("Fees paid to the Recrypt miners.")
                     action: partial(root.fee_dialog, self)
                 CardSeparator
                 SettingsItem:

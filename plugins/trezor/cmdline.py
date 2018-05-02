@@ -1,4 +1,4 @@
-from qtum_electrum.plugins import hook
+from recrypt_electrum.plugins import hook
 from .trezor import TrezorPlugin
 from ..hw_wallet import CmdLineHandler
 

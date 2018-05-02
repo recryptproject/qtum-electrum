@@ -28,10 +28,10 @@ from PyQt5.QtCore import *
 import PyQt5.QtCore as QtCore
 from PyQt5.QtWidgets import *
 
-from qtum_electrum.i18n import _
-from qtum_electrum.network import DEFAULT_PORTS
-from qtum_electrum.util import print_error
-from qtum_electrum.network import serialize_server, deserialize_server
+from recrypt_electrum.i18n import _
+from recrypt_electrum.network import DEFAULT_PORTS
+from recrypt_electrum.util import print_error
+from recrypt_electrum.network import serialize_server, deserialize_server
 
 from .util import *
 

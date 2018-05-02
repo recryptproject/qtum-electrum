@@ -1,9 +1,9 @@
 include LICENCE RELEASE-NOTES AUTHORS
 include README.md
-include qtum-electrum.conf.sample
-include qtum-electrum.desktop
+include recrypt-electrum.conf.sample
+include recrypt-electrum.desktop
 include *.py
-include qtum-electrum
+include recrypt-electrum
 recursive-include lib *.py
 recursive-include gui *.py
 recursive-include plugins *.py

@@ -14,7 +14,7 @@ from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.utils import platform
 
-from qtum_electrum.base_wizard import BaseWizard
+from recrypt_electrum.base_wizard import BaseWizard
 
 
 from . import EventsDialog
@@ -73,7 +73,7 @@ Builder.load_string('''
             size: Window.size
 
     crcontent: crcontent
-    # add qtum_electrum icon
+    # add recrypt_electrum icon
     BoxLayout:
         orientation: 'vertical' if self.width < self.height else 'horizontal'
         padding:
@@ -559,8 +559,8 @@ class RestoreSeedDialog(WizardDialog):
     def __init__(self, wizard, **kwargs):
         super(RestoreSeedDialog, self).__init__(wizard, **kwargs)
         self._test = kwargs['test']
-        from qtum_electrum.mnemonic import Mnemonic
-        from qtum_electrum.old_mnemonic import words as old_wordlist
+        from recrypt_electrum.mnemonic import Mnemonic
+        from recrypt_electrum.old_mnemonic import words as old_wordlist
         self.words = set(Mnemonic('en').wordlist).union(set(old_wordlist))
         self.ids.text_input_seed.text = test_seed if is_test else ''
         self.message = _('Please type your seed phrase using the virtual keyboard.')

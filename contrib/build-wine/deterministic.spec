@@ -11,7 +11,7 @@ else:
     raise Exception('no name')
 
 
-home = 'C:\\qtum-electrum\\'
+home = 'C:\\recrypt-electrum\\'
 
 # see https://github.com/pyinstaller/pyinstaller/issues/2005
 hiddenimports = []
@@ -27,12 +27,12 @@ binaries = [("c:/python3.5.4/libusb-1.0.dll", ".")]
 binaries += [b for b in collect_dynamic_libs('PyQt5') if 'qwindowsvista' in b[0]]
 
 datas = [
-    (home+'lib/currencies.json', 'qtum_electrum'),
-    (home+'lib/servers.json', 'qtum_electrum'),
-    (home+'lib/servers_testnet.json', 'qtum_electrum'),
-    (home+'lib/wordlist/english.txt', 'qtum_electrum/wordlist'),
-    (home+'lib/locale', 'qtum_electrum/locale'),
-    (home+'plugins', 'qtum_electrum_plugins'),
+    (home+'lib/currencies.json', 'recrypt_electrum'),
+    (home+'lib/servers.json', 'recrypt_electrum'),
+    (home+'lib/servers_testnet.json', 'recrypt_electrum'),
+    (home+'lib/wordlist/english.txt', 'recrypt_electrum/wordlist'),
+    (home+'lib/locale', 'recrypt_electrum/locale'),
+    (home+'plugins', 'recrypt_electrum_plugins'),
     ('C:\\Program Files (x86)\\ZBar\\bin\\', '.')
 ]
 datas += collect_data_files('trezorlib')
@@ -40,7 +40,7 @@ datas += collect_data_files('btchip')
 datas += collect_data_files('keepkeylib')
 
 # We don't put these files in to actually include them in the script but to make the Analysis method scan them for imports
-a = Analysis([home+'qtum-electrum',
+a = Analysis([home+'recrypt-electrum',
               home+'gui/qt/main_window.py',
               home+'gui/text.py',
               home+'lib/util.py',

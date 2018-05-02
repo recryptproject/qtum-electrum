@@ -6,7 +6,7 @@ __author__ = 'CodeFace'
 """
 from collections import namedtuple
 from .storage import ModelStorage
-from . import qtum
+from . import recrypt
 
 Token = namedtuple('Token', 'contract_addr bind_addr name symbol decimals balance')
 
@@ -51,12 +51,12 @@ class Tokens(ModelStorage):
                 continue
 
             contract_addr, bind_addr = kk
-            if not len(bind_addr) == 34 or not qtum.is_hash160(contract_addr):
+            if not len(bind_addr) == 34 or not recrypt.is_hash160(contract_addr):
                 data.pop(k)
                 continue
 
-            addr_type, __ = qtum.b58_address_to_hash160(bind_addr)
-            if not addr_type == qtum.ADDRTYPE_P2PKH:
+            addr_type, __ = recrypt.b58_address_to_hash160(bind_addr)
+            if not addr_type == recrypt.ADDRTYPE_P2PKH:
                 data.pop(k)
                 continue
 

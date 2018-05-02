@@ -1,13 +1,13 @@
 import threading
 from binascii import hexlify, unhexlify
 
-from qtum_electrum.util import bfh, bh2u, versiontuple
-from qtum_electrum.qtum import (b58_address_to_hash160, xpub_from_pubkey,
-                                TYPE_ADDRESS, TYPE_SCRIPT, TESTNET, qtum_addr_to_bitcoin_addr)
-from qtum_electrum.i18n import _
-from qtum_electrum.plugins import BasePlugin, Device
-from qtum_electrum.transaction import deserialize, Transaction
-from qtum_electrum.keystore import Hardware_KeyStore, is_xpubkey, parse_xpubkey
+from recrypt_electrum.util import bfh, bh2u, versiontuple
+from recrypt_electrum.recrypt import (b58_address_to_hash160, xpub_from_pubkey,
+                                TYPE_ADDRESS, TYPE_SCRIPT, TESTNET, recrypt_addr_to_bitcoin_addr)
+from recrypt_electrum.i18n import _
+from recrypt_electrum.plugins import BasePlugin, Device
+from recrypt_electrum.transaction import deserialize, Transaction
+from recrypt_electrum.keystore import Hardware_KeyStore, is_xpubkey, parse_xpubkey
 
 from ..hw_wallet import HW_PluginBase
 
@@ -426,7 +426,7 @@ class TrezorPlugin(HW_PluginBase):
                 txoutputtype.op_return_data = address[2:]
             elif _type == TYPE_ADDRESS:
                 txoutputtype.script_type = self.types.OutputScriptType.PAYTOADDRESS
-                txoutputtype.address = qtum_addr_to_bitcoin_addr(address)
+                txoutputtype.address = recrypt_addr_to_bitcoin_addr(address)
             return txoutputtype
 
         def is_any_output_on_change_branch():

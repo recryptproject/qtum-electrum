@@ -22,9 +22,9 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-from qtum_electrum.i18n import _
-from qtum_electrum.util import format_time
-from qtum_electrum.paymentrequest import PR_UNPAID
+from recrypt_electrum.i18n import _
+from recrypt_electrum.util import format_time
+from recrypt_electrum.paymentrequest import PR_UNPAID
 from .util import *
 
 

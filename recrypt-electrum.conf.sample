@@ -1,10 +1,10 @@
-# Configuration file for the qtum electrum client
+# Configuration file for the recrypt electrum client
 # Settings defined here are shared across wallets
 #
-# copy this file to /etc/qtum-electrum.conf if you want read-only settings
+# copy this file to /etc/recrypt-electrum.conf if you want read-only settings
 
 [client]
-server = s1.qtum.info:50001:t
+server = s1.recrypt.info:50001:t
 proxy = None
 gap_limit = 5
 # booleans use python syntax

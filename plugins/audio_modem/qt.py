@@ -5,10 +5,10 @@ from io import BytesIO
 import sys
 import platform
 
-from qtum_electrum.plugins import BasePlugin, hook
-from qtum_electrum_gui.qt.util import WaitingDialog, EnterButton, WindowModalDialog
-from qtum_electrum.util import print_msg, print_error
-from qtum_electrum.i18n import _
+from recrypt_electrum.plugins import BasePlugin, hook
+from recrypt_electrum_gui.qt.util import WaitingDialog, EnterButton, WindowModalDialog
+from recrypt_electrum.util import print_msg, print_error
+from recrypt_electrum.i18n import _
 
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *

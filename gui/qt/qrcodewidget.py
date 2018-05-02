@@ -7,8 +7,8 @@ from PyQt5.QtWidgets import (
 import os
 import qrcode
 
-import qtum_electrum
-from qtum_electrum.i18n import _
+import recrypt_electrum
+from recrypt_electrum.i18n import _
 from .util import WindowModalDialog
 
 

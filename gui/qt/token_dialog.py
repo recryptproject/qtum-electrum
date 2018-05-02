@@ -9,10 +9,10 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from .util import ButtonsLineEdit, Buttons, CancelButton, MessageBoxMixin
 from .amountedit import AmountEdit
-from qtum_electrum.qtum import is_hash160, is_b58_address, b58_address_to_hash160, bh2u, ADDRTYPE_P2PKH
-from qtum_electrum.i18n import _
-from qtum_electrum.tokens import Token
-from qtum_electrum_plugins.trezor.trezor import TrezorKeyStore
+from recrypt_electrum.recrypt import is_hash160, is_b58_address, b58_address_to_hash160, bh2u, ADDRTYPE_P2PKH
+from recrypt_electrum.i18n import _
+from recrypt_electrum.tokens import Token
+from recrypt_electrum_plugins.trezor.trezor import TrezorKeyStore
 
 
 class TokenAddLayout(QGridLayout):
@@ -28,7 +28,7 @@ class TokenAddLayout(QGridLayout):
         self.dialog = dialog
 
         if isinstance(self.dialog.parent().wallet.keystore, TrezorKeyStore):
-            self.dialog.show_message('Trezor does not support QRC20 Token for now')
+            self.dialog.show_message('Trezor does not support RRC20 Token for now')
             self.dialog.reject()
             return
 
@@ -36,7 +36,7 @@ class TokenAddLayout(QGridLayout):
 
         addr_type, __ = b58_address_to_hash160(self.addresses[0])
         if not addr_type == ADDRTYPE_P2PKH:
-            self.dialog.show_message('only P2PKH address supports QRC20 Token')
+            self.dialog.show_message('only P2PKH address supports RRC20 Token')
             self.dialog.reject()
             return
 

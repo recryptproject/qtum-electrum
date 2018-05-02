@@ -31,7 +31,7 @@ def read_json_dict(filename):
 BITCOIN_ADDRTYPE_P2PKH = 0
 BITCOIN_ADDRTYPE_P2SH = 5
 
-# QTUM network constants
+# RECRYPT network constants
 TESTNET = False
 ADDRTYPE_P2PKH = 0x3a
 ADDRTYPE_P2SH = 0x32
@@ -105,18 +105,18 @@ def set_testnet():
 
 
 mainnet_block_explorers = {
-    'qtum.info': ('https://qtum.info',
+    'recrypt.info': ('https://recrypt.info',
                   {'tx': 'tx', 'addr': 'address', 'contract': 'contract'}),
-    'explorer.qtum.org': ('https://explorer.qtum.org',
+    'explorer.recrypt.org': ('https://explorer.recrypt.org',
                           {'tx': 'tx', 'addr': 'address', 'contract': 'contract'}),
-    'qtumexplorer.io': ('https://qtumexplorer.io/',
+    'recryptexplorer.io': ('https://recryptexplorer.io/',
                         {'tx': 'tx', 'addr': 'address', 'contract': 'contract'}),
 }
 
 testnet_block_explorers = {
-    'qtum.info': ('https://testnet.qtum.info',
+    'recrypt.info': ('https://testnet.recrypt.info',
                   {'tx': 'tx', 'addr': 'address', 'contract': 'contract'}),
-    'explorer.qtum.org': ('https://testnet.qtum.org/',
+    'explorer.recrypt.org': ('https://testnet.recrypt.org/',
                           {'tx': 'tx', 'addr': 'address', 'contract': 'contract'}),
 }
 
@@ -773,7 +773,7 @@ from ecdsa.util import string_to_number, number_to_string
 
 def msg_magic(message):
     length = bfh(var_int(len(message)))
-    return b"\x15Qtum Signed Message:\n" + length + message
+    return b"\x15Recrypt Signed Message:\n" + length + message
 
 
 def verify_message(address, sig, message):
@@ -1336,8 +1336,8 @@ def compact_from_uint256(target):
     return new_bits
 
 
-def qtum_addr_to_bitcoin_addr(qtum_addr):
-    addr_type, hash160 = b58_address_to_hash160(qtum_addr)
+def recrypt_addr_to_bitcoin_addr(recrypt_addr):
+    addr_type, hash160 = b58_address_to_hash160(recrypt_addr)
     if addr_type == ADDRTYPE_P2PKH:
         return hash160_to_b58_address(hash160, addrtype=BITCOIN_ADDRTYPE_P2PKH)
     elif addr_type == ADDRTYPE_P2SH:

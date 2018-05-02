@@ -23,7 +23,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 from .util import *
-from qtum_electrum.i18n import _
+from recrypt_electrum.i18n import _
 
 
 class UTXOList(MyTreeWidget):

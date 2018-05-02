@@ -5,9 +5,9 @@
 __author__ = 'CodeFace'
 """
 from .util import *
-from qtum_electrum.i18n import _
-from qtum_electrum.plugins import run_hook
-from qtum_electrum.util import block_explorer_URL, format_satoshis, open_browser
+from recrypt_electrum.i18n import _
+from recrypt_electrum.plugins import run_hook
+from recrypt_electrum.util import block_explorer_URL, format_satoshis, open_browser
 
 
 class TokenBalanceList(MyTreeWidget):

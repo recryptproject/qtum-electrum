@@ -38,7 +38,7 @@ import itertools
 
 from .i18n import _
 from .util import NotEnoughFunds, PrintError, UserCancelled, profiler, format_satoshis, timestamp_to_datetime
-from .qtum import *
+from .recrypt import *
 from .version import *
 from .keystore import load_keystore, Hardware_KeyStore
 from .storage import multisig_type, STO_EV_PLAINTEXT, STO_EV_USER_PW, STO_EV_XPUB_PW
@@ -340,7 +340,7 @@ class Abstract_Wallet(PrintError):
         addrs = self.get_receiving_addresses()
         if len(addrs) > 0:
             if not is_address(addrs[0]):
-                raise Exception('The addresses in this wallet are not qtum addresses.')
+                raise Exception('The addresses in this wallet are not recrypt addresses.')
 
     def synchronize(self, create_new=False):
         pass
@@ -1106,7 +1106,7 @@ class Abstract_Wallet(PrintError):
             _type, data, value = o
             if _type == TYPE_ADDRESS:
                 if not is_address(data):
-                    raise Exception("Invalid Qtum address:" + data)
+                    raise Exception("Invalid Recrypt address:" + data)
             if value == '!':
                 if i_max is not None:
                     raise Exception("More than one output set to spend max")
@@ -1148,7 +1148,7 @@ class Abstract_Wallet(PrintError):
             # Let the coin chooser select the coins to spend
             max_change = self.max_change_outputs if self.multiple_change else 1
             if sender:
-                coin_chooser = coinchooser.CoinChooserQtum()
+                coin_chooser = coinchooser.CoinChooserRecrypt()
             else:
                 coin_chooser = coinchooser.get_coin_chooser(config)
             tx = coin_chooser.make_tx(inputs, outputs, change_addrs[:max_change],
@@ -1166,7 +1166,7 @@ class Abstract_Wallet(PrintError):
 
         # Sort the inputs and outputs deterministically
         # tx.BIP_LI01_sort()
-        tx.qtum_sort(sender)
+        tx.recrypt_sort(sender)
         # Timelock tx to current height.
         # Disabled until keepkey firmware update
         # tx.locktime = self.get_local_height()
@@ -1444,7 +1444,7 @@ class Abstract_Wallet(PrintError):
         if not r:
             return
         out = copy.copy(r)
-        out['URI'] = 'qtum:' + addr + '?amount=' + format_satoshis(out.get('amount'))
+        out['URI'] = 'recrypt:' + addr + '?amount=' + format_satoshis(out.get('amount'))
         status, conf = self.get_request_status(addr)
         out['status'] = status
         if conf is not None:

@@ -23,10 +23,10 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 from .util import *
-from qtum_electrum.i18n import _
-from qtum_electrum.util import block_explorer_URL, format_satoshis, format_time, open_browser
-from qtum_electrum.plugins import run_hook
-from qtum_electrum.bitcoin import is_address
+from recrypt_electrum.i18n import _
+from recrypt_electrum.util import block_explorer_URL, format_satoshis, format_time, open_browser
+from recrypt_electrum.plugins import run_hook
+from recrypt_electrum.bitcoin import is_address
 
 
 class AddressList(MyTreeWidget):
@@ -121,7 +121,7 @@ class AddressList(MyTreeWidget):
                 self.setCurrentItem(address_item)
 
     def create_menu(self, position):
-        from qtum_electrum.wallet import Multisig_Wallet
+        from recrypt_electrum.wallet import Multisig_Wallet
         is_multisig = isinstance(self.wallet, Multisig_Wallet)
         can_delete = self.wallet.can_delete_address()
         selected = self.selectedItems()

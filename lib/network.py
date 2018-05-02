@@ -34,7 +34,7 @@ import socks
 from . import bitcoin
 from . import blockchain
 from . import util
-from .qtum import *
+from .recrypt import *
 from .interface import Connection, Interface
 from .version import ELECTRUM_VERSION, PROTOCOL_VERSION
 
@@ -86,7 +86,7 @@ def filter_protocol(hostmap, protocol = 's'):
     return eligible
 
 def pick_random_server(hostmap = None, protocol = 's', exclude_set = set()):
-    from .qtum import DEFAULT_SERVERS
+    from .recrypt import DEFAULT_SERVERS
     if hostmap is None:
         hostmap = DEFAULT_SERVERS
     eligible = list(set(filter_protocol(hostmap, protocol)) - exclude_set)
@@ -142,7 +142,7 @@ def serialize_server(host, port, protocol):
 
 
 class Network(util.DaemonThread):
-    """The Network class manages a set of connections to remote qtum_electrum
+    """The Network class manages a set of connections to remote recrypt_electrum
     servers, each connected socket is handled by an Interface() object.
     Connections are initiated by a Connection() thread which stops once
     the connection succeeds or fails.
@@ -365,7 +365,7 @@ class Network(util.DaemonThread):
         return list(self.interfaces.keys())
 
     def get_servers(self):
-        from .qtum import DEFAULT_SERVERS
+        from .recrypt import DEFAULT_SERVERS
         out = DEFAULT_SERVERS
         if self.irc_servers:
             out.update(filter_version(self.irc_servers.copy()))

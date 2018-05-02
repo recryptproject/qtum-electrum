@@ -37,10 +37,10 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 import PyQt5.QtCore as QtCore
 
-from qtum_electrum.i18n import _, set_language
-from qtum_electrum.plugins import run_hook
-from qtum_electrum import SimpleConfig, Wallet, WalletStorage
-from qtum_electrum.util import DebugMem, UserCancelled, InvalidPassword, print_error
+from recrypt_electrum.i18n import _, set_language
+from recrypt_electrum.plugins import run_hook
+from recrypt_electrum import SimpleConfig, Wallet, WalletStorage
+from recrypt_electrum.util import DebugMem, UserCancelled, InvalidPassword, print_error
 from .installwizard import InstallWizard, GoBack
 
 
@@ -49,7 +49,7 @@ try:
 except Exception as e:
     print(e)
     print("Error: Could not find icons file.")
-    print("Please run 'pyrcc5 icons.qrc -o gui/qt/icons_rc.py', and reinstall Qtum Electrum")
+    print("Please run 'pyrcc5 icons.qrc -o gui/qt/icons_rc.py', and reinstall Recrypt Electrum")
     sys.exit(1)
 
 from .util import *   # * needed for plugins
@@ -89,7 +89,7 @@ class ElectrumGui:
         if hasattr(QtCore.Qt, "AA_ShareOpenGLContexts"):
             QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
         if hasattr(QGuiApplication, 'setDesktopFileName'):
-            QGuiApplication.setDesktopFileName('qtum-electrum.desktop')
+            QGuiApplication.setDesktopFileName('recrypt-electrum.desktop')
         self.config = config
         self.daemon = daemon
         self.plugins = plugins
@@ -103,7 +103,7 @@ class ElectrumGui:
         # init tray
         self.dark_icon = self.config.get("dark_icon", False)
         self.tray = QSystemTrayIcon(self.tray_icon(), None)
-        self.tray.setToolTip('Qtum Electrum')
+        self.tray.setToolTip('Recrypt Electrum')
         self.tray.activated.connect(self.tray_activated)
         self.build_tray_menu()
         self.tray.show()
@@ -157,7 +157,7 @@ class ElectrumGui:
     def show_network_dialog(self, parent):
         if not self.daemon.network:
             parent.show_warning(
-                _('You are using Qtum Electrum in offline mode; restart Qtum Electrum if you want to get connected'),
+                _('You are using Recrypt Electrum in offline mode; restart Recrypt Electrum if you want to get connected'),
                 title=_('Offline'))
             return
         if self.nd:

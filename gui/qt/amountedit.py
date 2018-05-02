@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import (QLineEdit, QStyle, QStyleOptionFrame)
 
 from decimal import Decimal
-from qtum_electrum.util import format_satoshis_plain
+from recrypt_electrum.util import format_satoshis_plain
 
 
 class MyLineEdit(QLineEdit):
@@ -82,9 +82,9 @@ class BTCAmountEdit(AmountEdit):
         p = self.decimal_point()
         assert p in [2, 5, 8]
         if p == 8:
-            return 'QTUM'
+            return 'RECRYPT'
         if p == 5:
-            return 'mQTUM'
+            return 'mRECRYPT'
         if p == 2:
             return 'bits'
         raise Exception('Unknown base unit')

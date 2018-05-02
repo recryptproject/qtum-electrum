@@ -1,10 +1,10 @@
 import time
 from struct import pack
 
-from qtum_electrum.i18n import _
-from qtum_electrum.util import PrintError, UserCancelled
-from qtum_electrum.keystore import bip39_normalize_passphrase
-from qtum_electrum.qtum import serialize_xpub
+from recrypt_electrum.i18n import _
+from recrypt_electrum.util import PrintError, UserCancelled
+from recrypt_electrum.keystore import bip39_normalize_passphrase
+from recrypt_electrum.recrypt import serialize_xpub
 
 
 class GuiMixin(object):

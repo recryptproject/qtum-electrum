@@ -2,13 +2,13 @@
 
 import sys
 import time
-from qtum_electrum import SimpleConfig, Network
-from qtum_electrum.util import print_msg, json_encode
+from recrypt_electrum import SimpleConfig, Network
+from recrypt_electrum.util import print_msg, json_encode
 
 try:
     addr = sys.argv[1]
 except Exception:
-    print("usage: watch_address <qtum_address>")
+    print("usage: watch_address <recrypt_address>")
     sys.exit(1)
 
 # start network

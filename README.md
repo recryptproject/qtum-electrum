@@ -1,36 +1,36 @@
-Qtum Electrum
+Recrypt Electrum
 =====================================
 
   Licence: MIT Licence
 
-  Qtum Electrum is a lightweight Qtum wallet forked from [Electrum](https://github.com/spesmilo/electrum)
+  Recrypt Electrum is a lightweight Recrypt wallet forked from [Electrum](https://github.com/spesmilo/electrum)
 
 
 Getting started
 ===============
 
-For Windows and Mac OS X users, you can download latest release [here](https://github.com/qtumproject/qtum-electrum/releases).
+For Windows and Mac OS X users, you can download latest release [here](https://github.com/recryptproject/recrypt-electrum/releases).
 
 
 If you are using Linux, read the "Development Version" section.
 
 
-Compatible with Qtum mobile wallet
+Compatible with Recrypt mobile wallet
 ==================================
 
-Qtum Electrum standard wallet uses [bip44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) derivation path with coin_type set to 88 which not compatible with the current qtum mobile wallet.
+Recrypt Electrum standard wallet uses [bip44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) derivation path with coin_type set to 88 which not compatible with the current recrypt mobile wallet.
 
-If you want to be compatible with the qtum mobile wallet, you need to choose "Qtum mobile wallet compatible" to create or restore your wallet.
+If you want to be compatible with the recrypt mobile wallet, you need to choose "Recrypt mobile wallet compatible" to create or restore your wallet.
 
-![](https://github.com/qtumproject/qtum-electrum/blob/master/snap/mobile_compatible.png)
+![](https://github.com/recryptproject/recrypt-electrum/blob/master/snap/mobile_compatible.png)
 
 
-Compatible with Qtum Qt Core wallet
+Compatible with Recrypt Qt Core wallet
 ==================================
 
-If you want to import private master key from [Qtum Qt Core wallet](https://github.com/qtumproject/qtum/releases/), you need to choose "Qtum Qt Core wallet compatible" to restore your wallet.
+If you want to import private master key from [Recrypt Qt Core wallet](https://github.com/recryptproject/recrypt/releases/), you need to choose "Recrypt Qt Core wallet compatible" to restore your wallet.
 
-![](https://github.com/qtumproject/qtum-electrum/blob/master/snap/qt_core_compatible.png)
+![](https://github.com/recryptproject/recrypt-electrum/blob/master/snap/qt_core_compatible.png)
 
 
 Development version
@@ -38,8 +38,8 @@ Development version
 
 Check out the code from Github:
 
-    git clone https://github.com/qtumproject/qtum-electrum.git
-    cd qtum-electrum
+    git clone https://github.com/recryptproject/recrypt-electrum.git
+    cd recrypt-electrum
 
 Install dependencies::
 
@@ -69,7 +69,7 @@ Create translations (optional):
 
 Run it:
 
-    ./qtum-electrum
+    ./recrypt-electrum
 
 
 
@@ -86,17 +86,17 @@ This directory contains the python dependencies used by Electrum.
 Mac OS X
 --------
 
-See [contrib/build-osx/README.md](https://github.com/qtumproject/qtum-electrum/blob/master/contrib/build-osx/README.md) file.
+See [contrib/build-osx/README.md](https://github.com/recryptproject/recrypt-electrum/blob/master/contrib/build-osx/README.md) file.
 
 Windows
 -------
 
-See [contrib/build-wine/README.md](https://github.com/qtumproject/qtum-electrum/blob/master/contrib/build-wine/README.md) file.
+See [contrib/build-wine/README.md](https://github.com/recryptproject/recrypt-electrum/blob/master/contrib/build-wine/README.md) file.
 
 
 Android
 -------
 
-See [gui/kivy/Readme.md](https://github.com/qtumproject/qtum-electrum/blob/master/gui/kivy/Readme.md) file.
+See [gui/kivy/Readme.md](https://github.com/recryptproject/recrypt-electrum/blob/master/gui/kivy/Readme.md) file.
 
 

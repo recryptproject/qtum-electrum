@@ -1,11 +1,11 @@
 from PyQt5.Qt import QInputDialog, QLineEdit, QVBoxLayout, QLabel
 
-from qtum_electrum.i18n import _
+from recrypt_electrum.i18n import _
 from .ledger import LedgerPlugin
 from ..hw_wallet.qt import QtHandlerBase, QtPluginBase
-from qtum_electrum.plugins import hook
-from qtum_electrum.wallet import Standard_Wallet
-from qtum_electrum_gui.qt.util import *
+from recrypt_electrum.plugins import hook
+from recrypt_electrum.wallet import Standard_Wallet
+from recrypt_electrum_gui.qt.util import *
 
 #from btchip.btchipPersoWizard import StartBTChipPersoDialog
 

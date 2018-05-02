@@ -1,4 +1,4 @@
-from qtum_electrum.i18n import _
+from recrypt_electrum.i18n import _
 
 fullname = 'KeepKey'
 description = _('Provides support for KeepKey hardware wallet')

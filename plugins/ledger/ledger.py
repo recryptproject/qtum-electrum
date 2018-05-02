@@ -3,15 +3,15 @@ import hashlib
 import sys
 import traceback
 
-from qtum_electrum import qtum
-from qtum_electrum import bitcoin
-from qtum_electrum.bitcoin import TYPE_ADDRESS, int_to_hex, var_int, TYPE_SCRIPT
-from qtum_electrum.i18n import _
-from qtum_electrum.plugins import BasePlugin
-from qtum_electrum.keystore import Hardware_KeyStore
-from qtum_electrum.transaction import Transaction
+from recrypt_electrum import recrypt
+from recrypt_electrum import bitcoin
+from recrypt_electrum.bitcoin import TYPE_ADDRESS, int_to_hex, var_int, TYPE_SCRIPT
+from recrypt_electrum.i18n import _
+from recrypt_electrum.plugins import BasePlugin
+from recrypt_electrum.keystore import Hardware_KeyStore
+from recrypt_electrum.transaction import Transaction
 from ..hw_wallet import HW_PluginBase
-from qtum_electrum.util import print_error, bfh, bh2u, is_verbose, versiontuple
+from recrypt_electrum.util import print_error, bfh, bh2u, is_verbose, versiontuple
 
 try:
     import hid
@@ -29,7 +29,7 @@ except ImportError:
 
 MSG_NEEDS_FW_UPDATE_GENERIC = _('Firmware version too old. Please update at') + \
                       ' https://www.ledgerwallet.com'
-MSG_NEEDS_FW_UPDATE_SEGWIT = _('Firmware version (or "Qtum" app) too old for Segwit support. Please update at') + \
+MSG_NEEDS_FW_UPDATE_SEGWIT = _('Firmware version (or "Recrypt" app) too old for Segwit support. Please update at') + \
                       ' https://www.ledgerwallet.com'
 MULTI_OUTPUT_SUPPORT = '1.1.4'
 SEGWIT_SUPPORT = '1.1.10'
@@ -201,7 +201,7 @@ class Ledger_Client():
             except BTChipException as e:
                 print_error('checkDevice', e)
                 if (e.sw == 0x6d00 or e.sw == 0x6700):
-                    raise Exception(_("Device not in Qtum mode")) from e
+                    raise Exception(_("Device not in Recrypt mode")) from e
                 raise e
             self.preflightDone = True
 

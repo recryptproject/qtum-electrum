@@ -3,10 +3,10 @@ import curses, datetime, locale
 from decimal import Decimal
 import getpass
 
-import qtum_electrum
-from qtum_electrum.util import format_satoshis, set_verbosity
-from qtum_electrum.bitcoin import is_address, COIN, TYPE_ADDRESS
-from qtum_electrum import Wallet, WalletStorage
+import recrypt_electrum
+from recrypt_electrum.util import format_satoshis, set_verbosity
+from recrypt_electrum.bitcoin import is_address, COIN, TYPE_ADDRESS
+from recrypt_electrum import Wallet, WalletStorage
 
 _ = lambda x:x
 
@@ -20,7 +20,7 @@ class ElectrumGui:
         self.network = daemon.network
         storage = WalletStorage(config.get_wallet_path())
         if not storage.file_exists():
-            print("Wallet not found. try 'qtum-electrum create'")
+            print("Wallet not found. try 'recrypt-electrum create'")
             exit()
         if storage.is_encrypted():
             password = getpass.getpass('Password:', stream=None)

@@ -27,7 +27,7 @@ import binascii
 from threading import Lock
 from .transaction import Transaction
 from .util import ThreadJob, bh2u
-from .qtum import hash160_to_p2pkh
+from .recrypt import hash160_to_p2pkh
 
 
 class Synchronizer(ThreadJob):

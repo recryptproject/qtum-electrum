@@ -1,7 +1,7 @@
 import select, time, electrum, queue
-from qtum_electrum import Connection, Interface, SimpleConfig
+from recrypt_electrum import Connection, Interface, SimpleConfig
 
-from qtum_electrum.network import filter_protocol, parse_servers
+from recrypt_electrum.network import filter_protocol, parse_servers
 from collections import defaultdict
 
 # electrum.util.set_verbosity(1)

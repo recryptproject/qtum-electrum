@@ -1,5 +1,5 @@
-from qtum_electrum.util import print_msg
-from qtum_electrum.plugins import hook
+from recrypt_electrum.util import print_msg
+from recrypt_electrum.plugins import hook
 from .ledger import LedgerPlugin
 from ..hw_wallet import CmdLineHandler
 

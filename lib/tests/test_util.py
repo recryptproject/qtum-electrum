@@ -32,13 +32,13 @@ class TestUtil(unittest.TestCase):
 
 
     def test_parse_URI_address_label(self):
-        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?label=qtum-electrum%20test',
-                                {'address': '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 'label': 'qtum-electrum test'})
+        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?label=recrypt-electrum%20test',
+                                {'address': '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 'label': 'recrypt-electrum test'})
 
     def test_parse_URI_address_message(self):
-        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?message=qtum-electrum%20test',
-                                {'address': '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 'message': 'qtum-electrum test',
-                                 'memo': 'qtum-electrum test'})
+        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?message=recrypt-electrum%20test',
+                                {'address': '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 'message': 'recrypt-electrum test',
+                                 'memo': 'recrypt-electrum test'})
 
     def test_parse_URI_address_amount(self):
         self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?amount=0.0003',
@@ -54,9 +54,9 @@ class TestUtil(unittest.TestCase):
 
     def test_parse_URI_multiple_args(self):
         self._do_test_parse_URI(
-            'bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?amount=0.00004&label=qtum-electrum-test&message=qtum-electrum%20test&test=none&r=http://domain.tld/page',
-            {'address': '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 'amount': 4000, 'label': 'qtum-electrum-test',
-             'message': u'qtum_electrum test', 'memo': u'qtum_electrum test', 'r': 'http://domain.tld/page',
+            'bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?amount=0.00004&label=recrypt-electrum-test&message=recrypt-electrum%20test&test=none&r=http://domain.tld/page',
+            {'address': '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 'amount': 4000, 'label': 'recrypt-electrum-test',
+             'message': u'recrypt_electrum test', 'memo': u'recrypt_electrum test', 'r': 'http://domain.tld/page',
              'test': 'none'})
 
     def test_parse_URI_no_address_request_url(self):

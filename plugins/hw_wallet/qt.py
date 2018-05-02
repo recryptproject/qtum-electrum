@@ -27,11 +27,11 @@
 import threading
 
 from PyQt5.Qt import QVBoxLayout, QLabel
-from qtum_electrum_gui.qt.password_dialog import PasswordDialog, PW_PASSPHRASE
-from qtum_electrum_gui.qt.util import *
+from recrypt_electrum_gui.qt.password_dialog import PasswordDialog, PW_PASSPHRASE
+from recrypt_electrum_gui.qt.util import *
 
-from qtum_electrum.i18n import _
-from qtum_electrum.util import PrintError
+from recrypt_electrum.i18n import _
+from recrypt_electrum.util import PrintError
 
 # The trickiest thing about this handler was getting windows properly
 # parented on MacOSX.
@@ -171,9 +171,9 @@ class QtHandlerBase(QObject, PrintError):
         self.done.set()
 
 
-from qtum_electrum.plugins import hook
-from qtum_electrum.util import UserCancelled
-from qtum_electrum_gui.qt.main_window import StatusBarButton
+from recrypt_electrum.plugins import hook
+from recrypt_electrum.util import UserCancelled
+from recrypt_electrum_gui.qt.main_window import StatusBarButton
 
 class QtPluginBase(object):
 

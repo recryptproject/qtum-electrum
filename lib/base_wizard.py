@@ -90,11 +90,11 @@ class BaseWizard(object):
         ])
         wallet_kinds = [
             ('standard',  _("Standard wallet")),
-            ('mobile', _("Qtum mobile wallet compatible")),
-            ('qtcore', _("Qtum Qt Core wallet compatible")),
+            ('mobile', _("Recrypt mobile wallet compatible")),
+            ('qtcore', _("Recrypt Qt Core wallet compatible")),
             # ('2fa', _("Wallet with two-factor authentication")),
             ('multisig',  _("Multi-signature wallet")),
-            ('imported', _("Import Qtum addresses or private keys")),
+            ('imported', _("Import Recrypt addresses or private keys")),
         ]
         choices = [pair for pair in wallet_kinds if pair[0] in wallet_types]
         self.choice_dialog(title=title, message=message, choices=choices, run_next=self.on_wallet_type)
@@ -165,9 +165,9 @@ class BaseWizard(object):
 
     def import_addresses_or_keys(self):
         v = lambda x: keystore.is_address_list(x) or keystore.is_private_key_list(x)
-        title = _("Import Qtum Addresses")
+        title = _("Import Recrypt Addresses")
         message = _(
-            "Enter a list of Qtum addresses (this will create a watching-only wallet), or a list of private keys.")
+            "Enter a list of Recrypt addresses (this will create a watching-only wallet), or a list of private keys.")
         self.add_xpub_dialog(title=title, message=message, run_next=self.on_import, is_valid=v)
 
     def on_import(self, text):
@@ -194,7 +194,7 @@ class BaseWizard(object):
             v = keystore.is_xprv
             title = _("Create keystore from a master key")
             message = ' '.join([
-                _("Please enter your Qtum Qt Core wallet private masterkey (xprv).")
+                _("Please enter your Recrypt Qt Core wallet private masterkey (xprv).")
             ])
             self.add_xpub_dialog(title=title, message=message, run_next=self.on_restore_from_key, is_valid=v)
         elif self.wallet_type == 'standard':
@@ -544,7 +544,7 @@ class BaseWizard(object):
             "The type of addresses used by your wallet will depend on your seed.",
             "Segwit wallets use bech32 addresses, defined in BIP173.",
             "Please note that websites and other wallets may not support these addresses yet.",
-            "Thus, you might want to keep using a non-segwit wallet in order to be able to receive qtum during the transition period."
+            "Thus, you might want to keep using a non-segwit wallet in order to be able to receive recrypt during the transition period."
         ])
         choices = [
             ('create_standard_seed', _('Standard')),
@@ -595,5 +595,5 @@ class BaseWizard(object):
             self.wallet.storage.write()
             self.terminate()
 
-        msg = _("Qtum Electrum is generating your addresses, please wait.")
+        msg = _("Recrypt Electrum is generating your addresses, please wait.")
         self.waiting_dialog(task, msg)

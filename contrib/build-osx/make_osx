@@ -19,9 +19,9 @@ export PYTHONHASHSEED=22
 PYTHON_VERSION=3.6.2
 VERSION=`git describe --tags`
 STAGING_DIR="dist"
-VOL_NAME="Qtum Electrum"
-TEMP_DMG_NAME="/tmp/qtum-electrum.dmg"
-DMG_NAME="${STAGING_DIR}/Qtum-electrum-osx-${VERSION}.dmg"
+VOL_NAME="Recrypt Electrum"
+TEMP_DMG_NAME="/tmp/recrypt-electrum.dmg"
+DMG_NAME="${STAGING_DIR}/Recrypt-electrum-osx-${VERSION}.dmg"
 
 rm -rf ${STAGING_DIR} ${TEMP_DMG_NAME}
 

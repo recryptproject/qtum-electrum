@@ -1,47 +1,47 @@
 {
-  "s1.qtum.info": {
+  "s1.recrypt.info": {
     "pruning": "-",
     "t": "50001",
     "s": "50002",
     "version": "1.1"
   },
-  "s2.qtum.info": {
+  "s2.recrypt.info": {
     "pruning": "-",
     "t": "50001",
     "s": "50002",
     "version": "1.1"
   },
-  "s3.qtum.info": {
+  "s3.recrypt.info": {
     "pruning": "-",
     "t": "50001",
     "s": "50002",
     "version": "1.1"
   },
-  "s4.qtum.info": {
+  "s4.recrypt.info": {
     "pruning": "-",
     "t": "50001",
     "s": "50002",
     "version": "1.1"
   },
-  "s5.qtum.info": {
+  "s5.recrypt.info": {
     "pruning": "-",
     "t": "50001",
     "s": "50002",
     "version": "1.1"
   },
-  "s7.qtum.info": {
+  "s7.recrypt.info": {
     "pruning": "-",
     "t": "50001",
     "s": "50002",
     "version": "1.1"
   },
-  "s8.qtum.info": {
+  "s8.recrypt.info": {
     "pruning": "-",
     "t": "50001",
     "s": "50002",
     "version": "1.1"
   },
-  "s9.qtum.info": {
+  "s9.recrypt.info": {
     "pruning": "-",
     "t": "50001",
     "s": "50002",

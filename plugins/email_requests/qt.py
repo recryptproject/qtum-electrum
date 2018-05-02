@@ -41,11 +41,11 @@ import PyQt5.QtCore as QtCore
 import PyQt5.QtGui as QtGui
 from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QGridLayout, QLineEdit)
 
-from qtum_electrum.plugins import BasePlugin, hook
-from qtum_electrum.paymentrequest import PaymentRequest
-from qtum_electrum.i18n import _
-from qtum_electrum_gui.qt.util import EnterButton, Buttons, CloseButton
-from qtum_electrum_gui.qt.util import OkButton, WindowModalDialog
+from recrypt_electrum.plugins import BasePlugin, hook
+from recrypt_electrum.paymentrequest import PaymentRequest
+from recrypt_electrum.i18n import _
+from recrypt_electrum_gui.qt.util import EnterButton, Buttons, CloseButton
+from recrypt_electrum_gui.qt.util import OkButton, WindowModalDialog
 
 
 class Processor(threading.Thread):
@@ -144,7 +144,7 @@ class Plugin(BasePlugin):
         menu.addAction(_("Send via e-mail"), lambda: self.send(window, addr))
 
     def send(self, window, addr):
-        from qtum_electrum import paymentrequest
+        from recrypt_electrum import paymentrequest
         r = window.wallet.receive_requests.get(addr)
         message = r.get('memo', '')
         if r.get('signature'):

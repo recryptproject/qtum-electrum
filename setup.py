@@ -33,38 +33,38 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         else:
             usr_share = os.path.expanduser('~/.local/share')
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['qtum-electrum.desktop']),
+        (os.path.join(usr_share, 'applications/'), ['recrypt-electrum.desktop']),
         (os.path.join(usr_share, icons_dirname), ['icons/electrum.png'])
     ]
 
 setup(
-    name="Qtum Electrum",
+    name="Recrypt Electrum",
     version=version.ELECTRUM_VERSION,
     install_requires=requirements,
     packages=[
-        'qtum_electrum',
-        'qtum_electrum_gui',
-        'qtum_electrum_gui.qt',
-        'qtum_electrum_plugins',
-        'qtum_electrum_plugins.audio_modem',
-        'qtum_electrum_plugins.email_requests',
-        'qtum_electrum_plugins.greenaddress_instant',
-        'qtum_electrum_plugins.hw_wallet',
-        'qtum_electrum_plugins.keepkey',
-        'qtum_electrum_plugins.labels',
-        'qtum_electrum_plugins.ledger',
-        'qtum_electrum_plugins.trezor',
-        'qtum_electrum_plugins.digitalbitbox',
-        'qtum_electrum_plugins.trustedcoin',
-        'qtum_electrum_plugins.virtualkeyboard',
+        'recrypt_electrum',
+        'recrypt_electrum_gui',
+        'recrypt_electrum_gui.qt',
+        'recrypt_electrum_plugins',
+        'recrypt_electrum_plugins.audio_modem',
+        'recrypt_electrum_plugins.email_requests',
+        'recrypt_electrum_plugins.greenaddress_instant',
+        'recrypt_electrum_plugins.hw_wallet',
+        'recrypt_electrum_plugins.keepkey',
+        'recrypt_electrum_plugins.labels',
+        'recrypt_electrum_plugins.ledger',
+        'recrypt_electrum_plugins.trezor',
+        'recrypt_electrum_plugins.digitalbitbox',
+        'recrypt_electrum_plugins.trustedcoin',
+        'recrypt_electrum_plugins.virtualkeyboard',
     ],
     package_dir={
-        'qtum_electrum': 'lib',
-        'qtum_electrum_gui': 'gui',
-        'qtum_electrum_plugins': 'plugins',
+        'recrypt_electrum': 'lib',
+        'recrypt_electrum_gui': 'gui',
+        'recrypt_electrum_plugins': 'plugins',
     },
     package_data={
-        'qtum_electrum': [
+        'recrypt_electrum': [
             'currencies.json',
             'www/index.html',
             'wordlist/*.txt',
@@ -73,12 +73,12 @@ setup(
             'servers_testnet.json',
         ]
     },
-    scripts=['qtum-electrum'],
+    scripts=['recrypt-electrum'],
     data_files=data_files,
-    description="Lightweight Qtum Wallet",
+    description="Lightweight Recrypt Wallet",
     author="CodeFace",
-    author_email="codeface@qtum.org",
+    author_email="codeface@recrypt.org",
     license="MIT Licence",
-    url="https://qtum.org",
-    long_description="""Lightweight Qtum Wallet"""
+    url="https://recrypt.org",
+    long_description="""Lightweight Recrypt Wallet"""
 )

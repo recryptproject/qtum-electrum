@@ -4,7 +4,7 @@
 """
 __author__ = 'CodeFace'
 """
-from . import qtum
+from . import recrypt
 from .storage import ModelStorage
 
 
@@ -16,6 +16,6 @@ class SmartContracts(ModelStorage):
         for k, v in list(data.items()):
             if k == self.name:
                 return self.validate(v)
-            if not qtum.is_hash160(k):
+            if not recrypt.is_hash160(k):
                 data.pop(k)
         return data

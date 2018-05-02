@@ -32,16 +32,16 @@ from hashlib import sha256
 from urllib.parse import urljoin
 from urllib.parse import quote
 
-import qtum_electrum
-from qtum_electrum import qtum
-from qtum_electrum import keystore
-from qtum_electrum.qtum import *
-from qtum_electrum.mnemonic import Mnemonic
-from qtum_electrum import version
-from qtum_electrum.wallet import Multisig_Wallet, Deterministic_Wallet, Wallet
-from qtum_electrum.i18n import _
-from qtum_electrum.plugins import BasePlugin, run_hook, hook
-from qtum_electrum.util import NotEnoughFunds
+import recrypt_electrum
+from recrypt_electrum import recrypt
+from recrypt_electrum import keystore
+from recrypt_electrum.recrypt import *
+from recrypt_electrum.mnemonic import Mnemonic
+from recrypt_electrum import version
+from recrypt_electrum.wallet import Multisig_Wallet, Deterministic_Wallet, Wallet
+from recrypt_electrum.i18n import _
+from recrypt_electrum.plugins import BasePlugin, run_hook, hook
+from recrypt_electrum.util import NotEnoughFunds
 
 # signing_xpub is hardcoded so that the wallet can be restored from seed, without TrustedCoin's server
 signing_xpub = "xpub661MyMwAqRbcGnMkaTx2594P9EDuiEqMq25PM2aeG6UmwzaohgA6uDmNsvSUV8ubqwA3Wpste1hg69XHgjUuCD5HLcEp2QPzyV1HMrPppsL"
@@ -106,7 +106,7 @@ class TrustedCoinCosignerClient(object):
         else:
             return response.text
 
-    def get_terms_of_service(self, billing_plan='qtum_electrum-per-tx-otp'):
+    def get_terms_of_service(self, billing_plan='recrypt_electrum-per-tx-otp'):
         """
         Returns the TOS for the given billing plan as a plain/text unicode string.
         :param billing_plan: the plan to return the terms for
@@ -114,7 +114,7 @@ class TrustedCoinCosignerClient(object):
         payload = {'billing_plan': billing_plan}
         return self.send_request('get', 'tos', payload)
 
-    def create(self, xpubkey1, xpubkey2, email, billing_plan='qtum_electrum-per-tx-otp'):
+    def create(self, xpubkey1, xpubkey2, email, billing_plan='recrypt_electrum-per-tx-otp'):
         """
         Creates a new cosigner resource.
         :param xpubkey1: a bip32 extended public key (customarily the hot key)
@@ -205,7 +205,7 @@ class Wallet_2fa(Multisig_Wallet):
         return get_user_id(self.storage)
 
     def get_max_amount(self, config, inputs, recipient, fee):
-        from qtum_electrum.transaction import Transaction
+        from recrypt_electrum.transaction import Transaction
         sendable = sum(map(lambda x:x['value'], inputs))
         for i in inputs:
             self.add_input_info(i)
@@ -293,7 +293,7 @@ class Wallet_2fa(Multisig_Wallet):
 
 def get_user_id(storage):
     def make_long_id(xpub_hot, xpub_cold):
-        return qtum.sha256(''.join(sorted([xpub_hot, xpub_cold])))
+        return recrypt.sha256(''.join(sorted([xpub_hot, xpub_cold])))
     xpub1 = storage.get('x1/')['xpub']
     xpub2 = storage.get('x2/')['xpub']
     long_id = make_long_id(xpub1, xpub2)
@@ -302,15 +302,15 @@ def get_user_id(storage):
 
 def make_xpub(xpub, s):
     version, _, _, _, c, cK = deserialize_xpub(xpub)
-    cK2, c2 = qtum._CKD_pub(cK, c, s)
-    return qtum.serialize_xpub(version, c2, cK2)
+    cK2, c2 = recrypt._CKD_pub(cK, c, s)
+    return recrypt.serialize_xpub(version, c2, cK2)
 
 def make_billing_address(wallet, num):
     long_id, short_id = wallet.get_user_id()
     xpub = make_xpub(billing_xpub, long_id)
     version, _, _, _, c, cK = deserialize_xpub(xpub)
-    cK, c = qtum.CKD_pub(cK, c, num)
-    return qtum.public_key_to_p2pkh(cK)
+    cK, c = recrypt.CKD_pub(cK, c, num)
+    return recrypt.public_key_to_p2pkh(cK)
 
 
 class TrustedCoinPlugin(BasePlugin):
@@ -323,7 +323,7 @@ class TrustedCoinPlugin(BasePlugin):
 
     @staticmethod
     def is_valid_seed(seed):
-        return qtum.is_new_seed(seed, SEED_PREFIX)
+        return recrypt.is_new_seed(seed, SEED_PREFIX)
 
     def is_available(self):
         return True
@@ -390,8 +390,8 @@ class TrustedCoinPlugin(BasePlugin):
         wizard.show_seed_dialog(run_next=f, seed_text=seed)
 
     def get_xkeys(self, seed, passphrase, derivation):
-        from qtum_electrum.mnemonic import Mnemonic
-        from qtum_electrum.keystore import bip32_root, bip32_private_derivation
+        from recrypt_electrum.mnemonic import Mnemonic
+        from recrypt_electrum.keystore import bip32_root, bip32_private_derivation
         bip32_seed = Mnemonic.mnemonic_to_seed(seed, passphrase)
         xprv, xpub = bip32_root(bip32_seed, 'standard')
         xprv, xpub = bip32_private_derivation(xprv, "m/", derivation)

@@ -10,10 +10,10 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 from .util import ButtonsLineEdit, Buttons, ButtonsTextEdit, CancelButton, MessageBoxMixin, EnterButton
-from qtum_electrum.i18n import _
-from qtum_electrum.plugins import run_hook
-from qtum_electrum.qtum import is_hash160, is_address, b58_address_to_hash160
-from qtum_electrum.util import bh2u, print_error
+from recrypt_electrum.i18n import _
+from recrypt_electrum.plugins import run_hook
+from recrypt_electrum.recrypt import is_hash160, is_address, b58_address_to_hash160
+from recrypt_electrum.util import bh2u, print_error
 
 float_validator = QRegExpValidator(QRegExp('^(-?\d+)(\.\d+)?$'))
 int_validator = QIntValidator(0, 10 ** 9 - 1)

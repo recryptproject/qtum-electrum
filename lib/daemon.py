@@ -273,7 +273,7 @@ class Daemon(DaemonThread):
             wallet = self.wallets.get(path)
             if wallet is None:
                 return {
-                    'error': 'Wallet "%s" is not loaded. Use "qtum_electrum daemon load_wallet"' % os.path.basename(
+                    'error': 'Wallet "%s" is not loaded. Use "recrypt_electrum daemon load_wallet"' % os.path.basename(
                         path)}
         else:
             wallet = None
@@ -311,7 +311,7 @@ class Daemon(DaemonThread):
         gui_name = config.get('gui', 'qt')
         if gui_name in ['lite', 'classic']:
             gui_name = 'qt'
-        gui = __import__('qtum_electrum_gui.' + gui_name, fromlist=['qtum_electrum_gui'])
+        gui = __import__('recrypt_electrum_gui.' + gui_name, fromlist=['recrypt_electrum_gui'])
         self.gui = gui.ElectrumGui(config, self, plugins)
         try:
             self.gui.main()

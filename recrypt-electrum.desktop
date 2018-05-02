@@ -1,0 +1,23 @@
+# If you want electrum to appear in a linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install recrypt-electrum.desktop
+
+[Desktop Entry]
+Comment=Lightweight Recrypt Client
+Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\" recrypt-electrum %u"
+GenericName[en_US]=Recrypt Wallet
+GenericName=Recrypt Wallet
+Icon=electrum
+Name[en_US]=Electrum Recrypt Wallet
+Name=Electrum Recrypt Wallet
+Categories=Finance;Network;
+StartupNotify=false
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/recrypt;
+Actions=Testnet;
+
+[Desktop Action Testnet]
+Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\" recrypt-electrum --testnet %u"
+Name=Testnet mode
+
+

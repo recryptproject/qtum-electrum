@@ -1,4 +1,4 @@
-from qtum_electrum.util import PrintError
+from recrypt_electrum.util import PrintError
 
 
 class TrezorTransport(PrintError):

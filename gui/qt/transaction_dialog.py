@@ -31,13 +31,13 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from qtum_electrum import transaction
-from qtum_electrum.bitcoin import base_encode
-from qtum_electrum.i18n import _
-from qtum_electrum.plugins import run_hook
-from qtum_electrum.transaction import SerializationError
+from recrypt_electrum import transaction
+from recrypt_electrum.bitcoin import base_encode
+from recrypt_electrum.i18n import _
+from recrypt_electrum.plugins import run_hook
+from recrypt_electrum.transaction import SerializationError
 
-from qtum_electrum.util import bfh
+from recrypt_electrum.util import bfh
 from .util import *
 
 dialogs = []  # Otherwise python randomly garbage collects the dialogs...

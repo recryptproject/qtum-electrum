@@ -7,9 +7,9 @@ import traceback
 
 import base64
 
-import qtum_electrum
-from qtum_electrum.plugins import BasePlugin, hook
-from qtum_electrum.i18n import _
+import recrypt_electrum
+from recrypt_electrum.plugins import BasePlugin, hook
+from recrypt_electrum.i18n import _
 
 
 class LabelsPlugin(BasePlugin):
@@ -21,14 +21,14 @@ class LabelsPlugin(BasePlugin):
 
     def encode(self, wallet, msg):
         password, iv, wallet_id = self.wallets[wallet]
-        encrypted = qtum_electrum.bitcoin.aes_encrypt_with_iv(password, iv,
+        encrypted = recrypt_electrum.bitcoin.aes_encrypt_with_iv(password, iv,
                                                               msg.encode('utf8'))
         return base64.b64encode(encrypted).decode()
 
     def decode(self, wallet, message):
         password, iv, wallet_id = self.wallets[wallet]
         decoded = base64.b64decode(message)
-        decrypted = qtum_electrum.bitcoin.aes_decrypt_with_iv(password, iv, decoded)
+        decrypted = recrypt_electrum.bitcoin.aes_decrypt_with_iv(password, iv, decoded)
         return decrypted.decode('utf8')
 
     def get_nonce(self, wallet):

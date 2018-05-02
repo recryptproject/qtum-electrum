@@ -1,4 +1,4 @@
-from qtum_electrum.i18n import _
+from recrypt_electrum.i18n import _
 
 fullname = 'TREZOR Wallet'
 description = _('Provides support for TREZOR hardware wallet')

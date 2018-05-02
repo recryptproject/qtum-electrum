@@ -24,7 +24,7 @@
 # SOFTWARE.
 
 
-from .qtum import *
+from .recrypt import *
 
 #
 # import hashlib

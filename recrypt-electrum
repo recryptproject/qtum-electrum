@@ -29,7 +29,7 @@ import traceback
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 is_bundle = getattr(sys, 'frozen', False)
-is_local = not is_bundle and os.path.exists(os.path.join(script_dir, "qtum-electrum.desktop"))
+is_local = not is_bundle and os.path.exists(os.path.join(script_dir, "recrypt-electrum.desktop"))
 is_android = 'ANDROID_DATA' in os.environ
 
 # move this back to gui/kivy/__init.py once plugins are moved
@@ -69,23 +69,23 @@ def check_imports():
 if not is_android:
     check_imports()
 
-# load local module as qtum_electrum
+# load local module as recrypt_electrum
 if is_local or is_android:
     import imp
-    imp.load_module('qtum_electrum', *imp.find_module('lib'))
-    imp.load_module('qtum_electrum_gui', *imp.find_module('gui'))
-    imp.load_module('qtum_electrum_plugins', *imp.find_module('plugins'))
+    imp.load_module('recrypt_electrum', *imp.find_module('lib'))
+    imp.load_module('recrypt_electrum_gui', *imp.find_module('gui'))
+    imp.load_module('recrypt_electrum_plugins', *imp.find_module('plugins'))
 
-from qtum_electrum import qtum
-from qtum_electrum import SimpleConfig, Network
-from qtum_electrum.wallet import Wallet, Imported_Wallet
-from qtum_electrum.storage import WalletStorage, get_derivation_used_for_hw_device_encryption
-from qtum_electrum.util import print_msg, print_stderr, json_encode, json_decode, UserCancelled
-from qtum_electrum.util import set_verbosity, InvalidPassword
-from qtum_electrum.commands import get_parser, known_commands, Commands, config_variables
-from qtum_electrum import daemon
-from qtum_electrum import keystore
-from qtum_electrum.mnemonic import Mnemonic
+from recrypt_electrum import recrypt
+from recrypt_electrum import SimpleConfig, Network
+from recrypt_electrum.wallet import Wallet, Imported_Wallet
+from recrypt_electrum.storage import WalletStorage, get_derivation_used_for_hw_device_encryption
+from recrypt_electrum.util import print_msg, print_stderr, json_encode, json_decode, UserCancelled
+from recrypt_electrum.util import set_verbosity, InvalidPassword
+from recrypt_electrum.commands import get_parser, known_commands, Commands, config_variables
+from recrypt_electrum import daemon
+from recrypt_electrum import keystore
+from recrypt_electrum.mnemonic import Mnemonic
 
 
 # get password routine
@@ -182,7 +182,7 @@ def init_daemon(config_options):
     if not storage.file_exists():
         print_msg("Error: Wallet file not found.")
         print_msg(
-            "Type 'qtum_electrum create' to create a new wallet, or provide a path to a wallet with the -w option")
+            "Type 'recrypt_electrum create' to create a new wallet, or provide a path to a wallet with the -w option")
         sys.exit(0)
     if storage.is_encrypted():
         if storage.is_encrypted_with_hw_device():
@@ -218,7 +218,7 @@ def init_cmdline(config_options, server):
     if cmd.requires_wallet and not storage.file_exists():
         print_msg("Error: Wallet file not found.")
         print_msg(
-            "Type 'qtum_electrum create' to create a new wallet, or provide a path to a wallet with the -w option")
+            "Type 'recrypt_electrum create' to create a new wallet, or provide a path to a wallet with the -w option")
         sys.exit(0)
 
     # important warning
@@ -333,7 +333,7 @@ def run_offline_command(config, config_options, plugins):
 
 
 def init_plugins(config, gui_name):
-    from qtum_electrum.plugins import Plugins
+    from recrypt_electrum.plugins import Plugins
     return Plugins(config, is_local or is_android, gui_name)
 
 
@@ -388,7 +388,7 @@ def run():
 
     if config_options.get('portable'):
         config_options['electrum_path'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                                       'qtum-electrum-data')
+                                                       'recrypt-electrum-data')
 
     try:
         if is_bundle and os.path.exists(os.path.join(sys._MEIPASS, 'is_verbose')):
@@ -402,7 +402,7 @@ def run():
     # check uri
     uri = config_options.get('uri')
     if uri:
-        if not uri.startswith('qtum:'):
+        if not uri.startswith('recrypt:'):
             print_stderr('unknown command:', uri)
             sys.exit(1)
         config_options['uri'] = uri
@@ -412,7 +412,7 @@ def run():
     cmdname = config.get('cmd')
 
     if config.get('testnet'):
-        qtum.set_testnet()
+        recrypt.set_testnet()
 
     # run non-RPC commands separately
     if cmdname in ['create', 'restore']:
@@ -447,7 +447,7 @@ def run():
                 d = daemon.Daemon(config, fd, False)
                 d.start()
                 if config.get('websocket_server'):
-                    from qtum_electrum import websockets
+                    from recrypt_electrum import websockets
                     websockets.WebSocketServer(config, d.network).start()
                 if config.get('requests_dir'):
                     path = os.path.join(config.get('requests_dir'), 'index.html')
@@ -475,7 +475,7 @@ def run():
         else:
             cmd = known_commands[cmdname]
             if cmd.requires_network:
-                print_msg("Daemon not running; try 'qtum-electrum daemon start'")
+                print_msg("Daemon not running; try 'recrypt-electrum daemon start'")
                 sys.exit(1)
             else:
                 plugins = init_plugins(config, 'cmdline')

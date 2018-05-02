@@ -6,10 +6,10 @@ import traceback
 
 from PyQt5.QtCore import *
 
-from qtum_electrum import Wallet, WalletStorage
-from qtum_electrum.util import UserCancelled, InvalidPassword
-from qtum_electrum.base_wizard import BaseWizard, HWD_SETUP_DECRYPT_WALLET
-from qtum_electrum.i18n import _
+from recrypt_electrum import Wallet, WalletStorage
+from recrypt_electrum.util import UserCancelled, InvalidPassword
+from recrypt_electrum.base_wizard import BaseWizard, HWD_SETUP_DECRYPT_WALLET
+from recrypt_electrum.i18n import _
 
 from .seed_dialog import SeedLayout, KeysLayout
 from .network_dialog import NetworkChoiceLayout
@@ -95,7 +95,7 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
     def __init__(self, config, app, plugins, storage):
         BaseWizard.__init__(self, config, storage)
         QDialog.__init__(self, None)
-        self.setWindowTitle('Qtum Electrum  -  ' + _('Install Wizard'))
+        self.setWindowTitle('Recrypt Electrum  -  ' + _('Install Wizard'))
         self.app = app
         self.config = config
         # Set for base base class
@@ -399,7 +399,7 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
         if 'mobile' == self.wallet_type:
             message = ''.join([
                 _('Please enter your seed phrase in order to restore your wallet. \n'),
-                _('This is compatible with qtum mobile wallet. \n')])
+                _('This is compatible with recrypt mobile wallet. \n')])
         else:
             if self.opt_ext:
                 options.append('ext')
@@ -407,8 +407,8 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
             #     options.append('bip39')
             message = ''.join([
                 _('Please enter your seed phrase in order to restore your wallet. \n'),
-                _('Qtum Electrum is not compatiable with qtum mobile wallet seed words yet. \n'),
-                _('You cannot restore your mobile wallet in Qtum Electrum for now.')])
+                _('Recrypt Electrum is not compatiable with recrypt mobile wallet seed words yet. \n'),
+                _('You cannot restore your mobile wallet in Recrypt Electrum for now.')])
         return self.seed_input(title, message, test, options)
 
     @wizard_dialog

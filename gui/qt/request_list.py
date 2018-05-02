@@ -23,10 +23,10 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from qtum_electrum.i18n import _
-from qtum_electrum.util import block_explorer_URL, format_satoshis, format_time, age
-from qtum_electrum.plugins import run_hook
-from qtum_electrum.paymentrequest import PR_UNKNOWN
+from recrypt_electrum.i18n import _
+from recrypt_electrum.util import block_explorer_URL, format_satoshis, format_time, age
+from recrypt_electrum.plugins import run_hook
+from recrypt_electrum.paymentrequest import PR_UNKNOWN
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QTreeWidgetItem, QMenu

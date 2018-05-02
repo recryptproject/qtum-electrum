@@ -4,10 +4,10 @@ from PyInstaller.utils.hooks import collect_data_files, collect_submodules, coll
 import sys
 import os
 
-PACKAGE='Qtum Electrum'
-PYPKG='qtum_electrum'
-MAIN_SCRIPT='qtum-electrum'
-ICONS_FILE='qtum-electrum.icns'
+PACKAGE='Recrypt Electrum'
+PYPKG='recrypt_electrum'
+MAIN_SCRIPT='recrypt-electrum'
+ICONS_FILE='recrypt-electrum.icns'
 
 for i, x in enumerate(sys.argv):
     if x == '--name':

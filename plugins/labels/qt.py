@@ -4,11 +4,11 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QVBoxLayout)
 
-from qtum_electrum.plugins import hook
-from qtum_electrum.i18n import _
-from qtum_electrum_gui.qt import EnterButton
-from qtum_electrum_gui.qt.util import ThreadedButton, Buttons
-from qtum_electrum_gui.qt.util import WindowModalDialog, OkButton
+from recrypt_electrum.plugins import hook
+from recrypt_electrum.i18n import _
+from recrypt_electrum_gui.qt import EnterButton
+from recrypt_electrum_gui.qt.util import ThreadedButton, Buttons
+from recrypt_electrum_gui.qt.util import WindowModalDialog, OkButton
 
 from .labels import LabelsPlugin
 

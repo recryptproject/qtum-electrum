@@ -1,11 +1,11 @@
 {
-  "s1.qtum.info": {
+  "s1.recrypt.info": {
     "pruning": "-",
     "t": "51001",
     "s": "51002",
     "version": "1.1"
   },
-  "s2.qtum.info": {
+  "s2.recrypt.info": {
     "pruning": "-",
     "t": "51001",
     "s": "51002",

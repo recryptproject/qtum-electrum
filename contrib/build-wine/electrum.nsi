@@ -6,9 +6,9 @@
 ;--------------------------------
 ;Variables
 
-  !define PRODUCT_NAME "Qtum-Electrum"
-  !define PRODUCT_WEB_SITE "https://github.com/qtumproject/qtum-electrum"
-  !define PRODUCT_PUBLISHER "Qtum Team"
+  !define PRODUCT_NAME "Recrypt-Electrum"
+  !define PRODUCT_WEB_SITE "https://github.com/recryptproject/recrypt-electrum"
+  !define PRODUCT_PUBLISHER "Recrypt Team"
   !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 
 ;--------------------------------
@@ -122,19 +122,19 @@ Section
 
   ;Create desktop shortcut
   DetailPrint "Creating desktop shortcut..."
-  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\qtum-electrum-win-${PRODUCT_VERSION}.exe" ""
+  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\recrypt-electrum-win-${PRODUCT_VERSION}.exe" ""
 
   ;Create start-menu items
   DetailPrint "Creating start-menu items..."
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\qtum-electrum-win-${PRODUCT_VERSION}.exe" "" "$INSTDIR\qtum-electrum-win-${PRODUCT_VERSION}.exe" 0
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\recrypt-electrum-win-${PRODUCT_VERSION}.exe" "" "$INSTDIR\recrypt-electrum-win-${PRODUCT_VERSION}.exe" 0
 
-  ;Links qtum: URI's to Electrum
-  WriteRegStr HKCU "Software\Classes\qtum" "" "URL:qtum Protocol"
-  WriteRegStr HKCU "Software\Classes\qtum" "URL Protocol" ""
-  WriteRegStr HKCU "Software\Classes\qtum" "DefaultIcon" "$\"$INSTDIR\electrum.ico, 0$\""
-  WriteRegStr HKCU "Software\Classes\qtum\shell\open\command" "" "$\"$INSTDIR\qtum-electrum-win-${PRODUCT_VERSION}.exe$\" $\"%1$\""
+  ;Links recrypt: URI's to Electrum
+  WriteRegStr HKCU "Software\Classes\recrypt" "" "URL:recrypt Protocol"
+  WriteRegStr HKCU "Software\Classes\recrypt" "URL Protocol" ""
+  WriteRegStr HKCU "Software\Classes\recrypt" "DefaultIcon" "$\"$INSTDIR\electrum.ico, 0$\""
+  WriteRegStr HKCU "Software\Classes\recrypt\shell\open\command" "" "$\"$INSTDIR\recrypt-electrum-win-${PRODUCT_VERSION}.exe$\" $\"%1$\""
 
   ;Adds an uninstaller possibilty to Windows Uninstall or change a program section
   WriteRegStr HKCU "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
@@ -165,7 +165,7 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\*.*"
   RMDir  "$SMPROGRAMS\${PRODUCT_NAME}"
   
-  DeleteRegKey HKCU "Software\Classes\qtum"
+  DeleteRegKey HKCU "Software\Classes\recrypt"
   DeleteRegKey HKCU "Software\${PRODUCT_NAME}"
   DeleteRegKey HKCU "${PRODUCT_UNINST_KEY}"
 SectionEnd

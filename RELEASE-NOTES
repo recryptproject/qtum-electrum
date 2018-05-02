@@ -13,7 +13,7 @@
  * fix ledger sending token issue
 
 # Release 0.18.0
- * QRC20 Token supported
+ * RRC20 Token supported
  * Trezor supported
 
 # Release 0.17.5 : (Security update)
@@ -27,8 +27,8 @@
   * fix an issue with chain fork
 
 # Release v0.17.2
-  * support importing private master key for Qtum Qt Core wallet
+  * support importing private master key for Recrypt Qt Core wallet
 
 # Release v0.17.1
-  * first beta release for Qtum Electrum
+  * first beta release for Recrypt Electrum
 

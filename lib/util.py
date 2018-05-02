@@ -41,7 +41,7 @@ from .i18n import _
 def inv_dict(d):
     return {v: k for k, v in d.items()}
 
-base_units = {'QTUM':8, 'mQTUM':5, 'uQTUM':2}
+base_units = {'RECRYPT':8, 'mRECRYPT':5, 'uRECRYPT':2}
 fee_levels = [_('Within 25 blocks'), _('Within 10 blocks'), _('Within 5 blocks'), _('Within 2 blocks'), _('In the next block')]
 
 unpack_int32_from = Struct('<i').unpack_from
@@ -271,7 +271,7 @@ def android_data_dir():
     return PythonActivity.mActivity.getFilesDir().getPath() + '/data'
 
 def android_headers_dir():
-    d = android_ext_dir() + '/org.qtum.qtum_electrum'
+    d = android_ext_dir() + '/org.recrypt.recrypt_electrum'
     if not os.path.exists(d):
         os.mkdir(d)
     return d
@@ -280,7 +280,7 @@ def android_check_data_dir():
     """ if needed, move old directory to sandbox """
     ext_dir = android_ext_dir()
     data_dir = android_data_dir()
-    old_electrum_dir = ext_dir + '/qtum_electrum'
+    old_electrum_dir = ext_dir + '/recrypt_electrum'
     if not os.path.exists(data_dir) and os.path.exists(old_electrum_dir):
         import shutil
         new_headers_path = android_headers_dir() + '/blockchain_headers'
@@ -359,11 +359,11 @@ def user_dir():
     if 'ANDROID_DATA' in os.environ:
         return android_check_data_dir()
     elif os.name == 'posix':
-        return os.path.join(os.environ["HOME"], ".qtum-electrum")
+        return os.path.join(os.environ["HOME"], ".recrypt-electrum")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Qtum-Electrum")
+        return os.path.join(os.environ["APPDATA"], "Recrypt-Electrum")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Qtum-Electrum")
+        return os.path.join(os.environ["LOCALAPPDATA"], "Recrypt-Electrum")
     else:
         #raise Exception("No home directory found in environment variables.")
         return
@@ -467,15 +467,15 @@ def time_difference(distance_in_time, include_seconds):
 
 
 def block_explorer_info():
-    from . import qtum
-    if qtum.TESTNET:
-        return qtum.testnet_block_explorers
+    from . import recrypt
+    if recrypt.TESTNET:
+        return recrypt.testnet_block_explorers
     else:
-        return qtum.mainnet_block_explorers
+        return recrypt.mainnet_block_explorers
 
 
 def block_explorer(config):
-    bbb = config.get('block_explorer', 'explorer.qtum.org')
+    bbb = config.get('block_explorer', 'explorer.recrypt.org')
     return bbb
 
 def block_explorer_tuple(config):
@@ -493,7 +493,7 @@ def block_explorer_URL(config, params):
         return
 
     if params.get('token'):
-        if 'qtum.org' in be_tuple[0]:
+        if 'recrypt.org' in be_tuple[0]:
             return "{}/token/{}?a={}".format(be_tuple[0], params.get('token'), params.get('addr'))
 
     url_parts = [be_tuple[0], ]
@@ -515,12 +515,12 @@ def parse_URI(uri, on_pr=None):
 
     if ':' not in uri:
         if not bitcoin.is_address(uri):
-            raise Exception("Not a qtum address")
+            raise Exception("Not a recrypt address")
         return {'address': uri}
 
     u = urllib.parse.urlparse(uri)
-    if u.scheme != 'qtum':
-        raise Exception("Not a qtum URI")
+    if u.scheme != 'recrypt':
+        raise Exception("Not a recrypt URI")
     address = u.path
 
     # python for android fails to parse query
@@ -537,7 +537,7 @@ def parse_URI(uri, on_pr=None):
     out = {k: v[0] for k, v in pq.items()}
     if address:
         if not bitcoin.is_address(address):
-            raise Exception("Invalid qtum address:" + address)
+            raise Exception("Invalid recrypt address:" + address)
         out['address'] = address
     if 'amount' in out:
         am = out['amount']
@@ -587,7 +587,7 @@ def create_URI(addr, amount, message):
         query.append('amount=%s'%format_satoshis_plain(amount))
     if message:
         query.append('message=%s'%urllib.parse.quote(message))
-    p = urllib.parse.ParseResult(scheme='qtum', netloc='', path=addr, params='', query='&'.join(query), fragment='')
+    p = urllib.parse.ParseResult(scheme='recrypt', netloc='', path=addr, params='', query='&'.join(query), fragment='')
     return urllib.parse.urlunparse(p)
 
 

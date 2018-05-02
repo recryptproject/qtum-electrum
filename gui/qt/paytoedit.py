@@ -30,8 +30,8 @@ from .completion_text_edit import CompletionTextEdit
 
 import re
 from decimal import Decimal
-from qtum_electrum import bitcoin
-from qtum_electrum.util import bfh
+from recrypt_electrum import bitcoin
+from recrypt_electrum.util import bfh
 
 from . import util
 
@@ -91,7 +91,7 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit):
             return bitcoin.TYPE_SCRIPT, script
 
     def parse_script(self, x):
-        from qtum_electrum.transaction import opcodes, push_script
+        from recrypt_electrum.transaction import opcodes, push_script
         script = ''
         for word in x.split():
             if word[0:3] == 'OP_':
@@ -203,7 +203,7 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit):
 
     def qr_input(self):
         data = super(PayToEdit,self).qr_input()
-        if data.startswith("qtum:"):
+        if data.startswith("recrypt:"):
             self.scan_f(data)
             # TODO: update fee
 

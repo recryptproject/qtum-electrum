@@ -9,7 +9,7 @@ from .util import user_dir, print_error, print_msg, print_stderr, PrintError
 from .i18n import _
 from .bitcoin import MAX_FEE_RATE, FEE_TARGETS
 
-SYSTEM_CONFIG_PATH = "/etc/qtum_electrum.conf"
+SYSTEM_CONFIG_PATH = "/etc/recrypt_electrum.conf"
 
 config = None
 
@@ -90,7 +90,7 @@ class SimpleConfig(PrintError):
                 raise Exception('Dangling link: ' + path)
             os.mkdir(path)
 
-        self.print_error("qtum_electrum directory", path)
+        self.print_error("recrypt_electrum directory", path)
         return path
 
     def fixup_config_keys(self, config, keypairs):
@@ -169,7 +169,7 @@ class SimpleConfig(PrintError):
         new_path = os.path.join(self.path, "wallets", "default_wallet")
 
         # default path in pre 1.9 versions
-        old_path = os.path.join(self.path, "qtum_electrum.dat")
+        old_path = os.path.join(self.path, "recrypt_electrum.dat")
         if os.path.exists(old_path) and not os.path.exists(new_path):
             os.rename(old_path, new_path)
 
@@ -266,7 +266,7 @@ class SimpleConfig(PrintError):
 
 
 def read_system_config(path=SYSTEM_CONFIG_PATH):
-    """Parse and return the system config settings in /etc/qtum-electrum.conf."""
+    """Parse and return the system config settings in /etc/recrypt-electrum.conf."""
     result = {}
     if os.path.exists(path):
         import configparser
@@ -282,7 +282,7 @@ def read_system_config(path=SYSTEM_CONFIG_PATH):
 
 
 def read_user_config(path):
-    """Parse and store the user config settings in qtum-electrum.conf into user_config[]."""
+    """Parse and store the user config settings in recrypt-electrum.conf into user_config[]."""
     if not path:
         return {}
     config_path = os.path.join(path, "config")

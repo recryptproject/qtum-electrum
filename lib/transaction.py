@@ -27,7 +27,7 @@
 from typing import Sequence, Union
 from .util import print_error, profiler, to_string
 from . import bitcoin
-from .qtum import *
+from .recrypt import *
 import struct
 import traceback
 import sys
@@ -899,7 +899,7 @@ class Transaction:
         self._inputs.sort(key = lambda i: (i['prevout_hash'], i['prevout_n']))
         self._outputs.sort(key = lambda o: (o[2], self.pay_script(o[0], o[1])))
 
-    def qtum_sort(self, sender):
+    def recrypt_sort(self, sender):
         if not sender:
             return
         sender_inp = None
@@ -912,8 +912,8 @@ class Transaction:
         if sender_inp:
             self._inputs.insert(0, sender_inp)
         else:
-            print_error('qtum_sort', self._inputs)
-            raise Exception('qtum_sort - sender address not in inputs')
+            print_error('recrypt_sort', self._inputs)
+            raise Exception('recrypt_sort - sender address not in inputs')
 
     def serialize_output(self, output):
         output_type, data, amount = output

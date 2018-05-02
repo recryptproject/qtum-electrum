@@ -24,8 +24,8 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from qtum_electrum.plugins import BasePlugin, hook
-from qtum_electrum.i18n import _
+from recrypt_electrum.plugins import BasePlugin, hook
+from recrypt_electrum.i18n import _
 
 
 class HW_PluginBase(BasePlugin):
